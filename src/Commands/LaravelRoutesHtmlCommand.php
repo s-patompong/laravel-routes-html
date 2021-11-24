@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace SPatompong\LaravelRoutesHtml\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelRoutesHtmlCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-routes-html';
 
     public $description = 'My command';
 

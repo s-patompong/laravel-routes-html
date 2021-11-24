@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "s-patompong/laravel-routes-html",
+    "description": "An artisan command that beautifully display Laravel routes on the browser.",
     "keywords": [
-        ":vendor_name",
+        "s-patompong",
         "laravel",
-        ":package_slug"
+        "laravel-routes-html"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/s-patompong/laravel-routes-html",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Patompong Savaengsuk",
+            "email": "sp.patompong@gmail.com",
             "role": "Developer"
         }
     ],
@@ -34,13 +34,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "SPatompong\\LaravelRoutesHtml\\": "src",
+            "SPatompong\\LaravelRoutesHtml\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "SPatompong\\LaravelRoutesHtml\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -54,10 +54,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "SPatompong\\LaravelRoutesHtml\\LaravelRoutesHtmlServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "LaravelRoutesHtml": "SPatompong\\LaravelRoutesHtml\\Facades\\LaravelRoutesHtml"
             }
         }
     },
