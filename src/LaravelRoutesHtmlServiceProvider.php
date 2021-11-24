@@ -19,7 +19,6 @@ class LaravelRoutesHtmlServiceProvider extends PackageServiceProvider
             ->name('laravel-routes-html')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_laravel-routes-html_table')
-            ->hasCommand(LaravelRoutesHtmlCommand::class);
+            ->hasRoutes('routes');
     }
 }

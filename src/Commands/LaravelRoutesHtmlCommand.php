@@ -6,9 +6,9 @@ use Illuminate\Console\Command;
 
 class LaravelRoutesHtmlCommand extends Command
 {
-    public $signature = 'laravel-routes-html';
+    public $signature = 'routes:html';
 
-    public $description = 'My command';
+    public $description = 'Generate routes as HTML and open it in the browser.';
 
     public function handle(): int
     {
