@@ -4,7 +4,7 @@ return [
     /**
      * The route
      */
-    'route' => '/routes-html/routes',
+    'route' => '/route-list',
 
     /**
      * The route name

@@ -21,7 +21,7 @@ class ShowRoutes
 
     public function __invoke()
     {
-        $routes = $this->getRoutes();
+        $routes = array_values($this->getRoutes());
 
         return view('routes-html::routes', compact('routes'));
     }
