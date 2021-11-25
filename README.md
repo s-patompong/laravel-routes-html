@@ -19,13 +19,13 @@ composer require s-patompong/laravel-routes-html
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --tag="laravel-routes-html-config"
+php artisan vendor:publish --tag="routes-html-config"
 ```
 
 Optionally, you can publish the views using
 
 ```bash
-php artisan vendor:publish --tag="example-views"
+php artisan vendor:publish --tag="routes-html-views"
 ```
 
 This is the contents of the published config file:
