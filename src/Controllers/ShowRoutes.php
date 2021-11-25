@@ -3,13 +3,15 @@
 namespace SPatompong\LaravelRoutesHtml\Controllers;
 
 use Closure;
+use Illuminate\Routing\Controller;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
+use SPatompong\LaravelRoutesHtml\Middlewares\PackageEnabled;
 
-class ShowRoutes
+class ShowRoutes extends Controller
 {
     protected array $headers = ['Domain', 'Method', 'URI', 'Name', 'Action', 'Middleware'];
 
@@ -17,16 +19,21 @@ class ShowRoutes
 
     public function __construct(protected Router $router)
     {
+        // By default, let the request run through
+        // the PackageEnabled middleware
+        $this->middleware(PackageEnabled::class);
+
+        // Then, append the middleware pipeline
+        // with the middlewares from the config file
+        foreach (config('routes-html.middlewares') as $middleware) {
+            $this->middleware($middleware);
+        }
+
         $this->ignoreRoutes = config('routes-html.ignore_routes');
     }
 
     public function __invoke(): View
     {
-        // Return 404 not found if the package is disabled
-        if (! config('routes-html.enabled')) {
-            abort(404);
-        }
-
         $this->router->flushMiddlewareGroups();
 
         // Convert all \n into <br>

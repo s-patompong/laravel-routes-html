@@ -27,4 +27,17 @@ return [
         'sanctum/*',
         'livewire/*',
     ],
+
+    /**
+     * The list of middleware that you want
+     * the request to run through before hitting
+     * the /route-list route
+     */
+    'middlewares' => [
+        // Example: uncomment the first line below
+        // to allow only the authenticated user
+        // to use the /route-list route
+
+        // \App\Http\Middleware\Authenticate::class
+    ],
 ];
