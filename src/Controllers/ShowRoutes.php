@@ -23,7 +23,7 @@ class ShowRoutes
     public function __invoke(): View
     {
         // Return 404 not found if the package is disabled
-        if (!config('routes-html.enabled')) {
+        if (! config('routes-html.enabled')) {
             abort(404);
         }
 
