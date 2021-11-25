@@ -2,7 +2,7 @@
 
 use function Pest\Laravel\get;
 
-it('gets 404 error if the package is disabled', function() {
+it('gets 404 error if the package is disabled', function () {
     config(['routes-html.enabled' => false]);
 
     get(config('routes-html.uri'))
