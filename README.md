@@ -9,6 +9,8 @@ This package adds a route to your Laravel application. Once you've installed thi
 
 ![Screenshot](https://imgur.com/jNpGT6g.png)
 
+The page also allows you to filter using the URI and Name.
+
 ## Installation
 
 You can install the package via composer:
