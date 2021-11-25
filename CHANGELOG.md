@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-routes-html` will be documented in this file.
 
+## 1.2.0 - 2021-11-25
+
+**Added**
+
+- Add the middlewares config key so the package user can set the middleware for the request.
+
 ## 1.1.0 - 2021-11-25
 
 **Added**
