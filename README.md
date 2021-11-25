@@ -1,29 +1,13 @@
-# An artisan command that beautifully display Laravel routes on the browser.
+# View your Laravel routes on the browser.
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/s-patompong/laravel-routes-html.svg?style=flat-square)](https://packagist.org/packages/s-patompong/laravel-routes-html)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/s-patompong/laravel-routes-html/run-tests?label=tests)](https://github.com/s-patompong/laravel-routes-html/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/s-patompong/laravel-routes-html/Check%20&%20fix%20styling?label=code%20style)](https://github.com/s-patompong/laravel-routes-html/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/s-patompong/laravel-routes-html.svg?style=flat-square)](https://packagist.org/packages/s-patompong/laravel-routes-html)
 
----
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+This package adds a route to your Laravel application. Once you've installed this package, enter `/route-list` path in the browser to see your route list.
 
-1. Press the "Use template" button at the top of this repo to create a new repo with the contents of this laravel-routes-html
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files
-3. Remove this block of text.
-4. Have fun creating your package.
-5. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-routes-html.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-routes-html)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+Image shows here.
 
 ## Installation
 
@@ -33,16 +17,9 @@ You can install the package via composer:
 composer require s-patompong/laravel-routes-html
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="laravel-routes-html_without_prefix-migrations"
-php artisan migrate
-```
-
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --tag="laravel-routes-html_without_prefix-config"
+php artisan vendor:publish --tag="laravel-routes-html-config"
 ```
 
 Optionally, you can publish the views using
@@ -55,15 +32,38 @@ This is the contents of the published config file:
 
 ```php
 return [
+    /**
+     * Either you want to enable or disable the route
+     * It should be enabled only in the local environment
+     * By default, it'll be enabled if the app.debug is true
+     */
+    'enabled' => (bool) env('ROUTES_HTML_ENABLED', config('app.debug')),
+
+    /**
+     * The route URI
+     */
+    'uri' => '/route-list',
+
+    /**
+     * The route name
+     */
+    'route_name' => 'routes',
+
+    /**
+     * The list of route to ignore
+     */
+    'ignore_routes' => [
+        'routes-html/*',
+        '_ignition/*',
+        'sanctum/*',
+    ],
 ];
 ```
 
 ## Usage
 
-```php
-$laravel-routes-html = new SPatompong\LaravelRoutesHtml();
-echo $laravel-routes-html->echoPhrase('Hello, SPatompong!');
-```
+Open your Laravel application on the browser and go to `/route-list` URL (or the URL that you put inside the `routes-html.uri`).
+
 
 ## Testing
 

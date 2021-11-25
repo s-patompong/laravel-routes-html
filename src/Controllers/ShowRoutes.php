@@ -7,6 +7,7 @@ use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class ShowRoutes
 {
@@ -19,8 +20,13 @@ class ShowRoutes
         $this->ignoreRoutes = config('routes-html.ignore_routes');
     }
 
-    public function __invoke()
+    public function __invoke(): View
     {
+        // Return 404 not found if the package is disabled
+        if (!config('routes-html.enabled')) {
+            abort(404);
+        }
+
         $routes = array_values($this->getRoutes());
 
         return view('routes-html::routes', compact('routes'));
