@@ -67,7 +67,7 @@ return [
 
 Open your Laravel application on the browser and go to `/route-list` URL (or the URL that you put inside the `routes-html.uri`).
 
-![Screenshot](https://imgur.com/a/qrwZSmD.png)
+![Screenshot](https://imgur.com/jNpGT6g.png)
 
 ## Testing
 
