@@ -60,6 +60,19 @@ return [
         'sanctum/*',
         'livewire/*',
     ],
+    
+    /**
+     * The list of middleware that you want
+     * the request to run through before hitting
+     * the /route-list route
+     */
+    'middlewares' => [
+        // Example: uncomment the first line below
+        // to allow only the authenticated user
+        // to use the /route-list route
+
+        // \App\Http\Middleware\Authenticate::class
+    ],
 ];
 ```
 
@@ -68,6 +81,19 @@ return [
 Open your Laravel application on the browser and go to `/route-list` URL (or the URL that you put inside the `routes-html.uri`).
 
 ![Screenshot](https://imgur.com/jNpGT6g.png)
+
+### Route Middlewares
+
+To add middlewares to the request pipeline before it hits the `/route-list` route.
+Add the middleware classname to the `middlewares` key in the config file like so:
+
+```php
+'middlewares' => [
+    \App\Http\Middleware\Authenticate::class
+]
+```
+
+This will make sure that only the authenticated user can access the `/route-list` route.  
 
 ## Testing
 
