@@ -1,10 +1,11 @@
 {
     "name": "s-patompong/laravel-routes-html",
-    "description": "An artisan command that beautifully display Laravel routes on the browser.",
+    "description": "View your Laravel routes on the browser.",
     "keywords": [
         "s-patompong",
         "laravel",
-        "laravel-routes-html"
+        "laravel-routes-html",
+        "route-list"
     ],
     "homepage": "https://github.com/s-patompong/laravel-routes-html",
     "license": "MIT",

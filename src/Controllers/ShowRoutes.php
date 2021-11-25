@@ -26,15 +26,45 @@ class ShowRoutes
         return view('routes-html::routes', compact('routes'));
     }
 
+    // All the methods below are the stripped-down
+    // version of the codebase from the
+    // Laravel's route:list command
+
+    /**
+     * Compile the routes into a displayable format.
+     *
+     * @return array
+     */
     protected function getRoutes(): array
     {
         $routes = collect($this->router->getRoutes())->map(function ($route) {
             return $this->getRouteInformation($route);
         })->filter()->all();
 
+        $routes = $this->sortRoutes($routes);
+
         return $this->pluckColumns($routes);
     }
 
+    /**
+     * Sort the routes by a given element.
+     *
+     * @param  array  $routes
+     * @return array
+     */
+    protected function sortRoutes(array $routes)
+    {
+        return Arr::sort($routes, function ($route) {
+            return $route['uri'];
+        });
+    }
+
+    /**
+     * Remove unnecessary columns from the routes.
+     *
+     * @param  array  $routes
+     * @return array
+     */
     protected function pluckColumns(array $routes): array
     {
         return array_map(function ($route) {
@@ -42,11 +72,21 @@ class ShowRoutes
         }, $routes);
     }
 
+    /**
+     * Get the table headers for the visible columns.
+     *
+     * @return array
+     */
     protected function getHeaders(): array
     {
         return Arr::only($this->headers, array_keys($this->getColumns()));
     }
 
+    /**
+     * Get the column names to show (lowercase table headers).
+     *
+     * @return array
+     */
     protected function getColumns(): array
     {
         $availableColumns = array_map('strtolower', $this->headers);
@@ -54,6 +94,12 @@ class ShowRoutes
         return $availableColumns;
     }
 
+    /**
+     * Get the route information for a given route.
+     *
+     * @param  \Illuminate\Routing\Route  $route
+     * @return array
+     */
     protected function getRouteInformation(Route $route): array
     {
         return $this->filterRoute([
@@ -66,7 +112,13 @@ class ShowRoutes
         ]);
     }
 
-    protected function filterRoute(array $route): array|bool
+    /**
+     * Filter the route by URI and / or name.
+     *
+     * @param  array  $route
+     * @return array
+     */
+    protected function filterRoute(array $route): array
     {
         foreach ($this->ignoreRoutes as $ignoreRoute) {
             if (Str::is($ignoreRoute, $route['uri'])) {
@@ -77,6 +129,12 @@ class ShowRoutes
         return $route;
     }
 
+    /**
+     * Get the middleware for the route.
+     *
+     * @param  \Illuminate\Routing\Route  $route
+     * @return string
+     */
     protected function getRouteMiddleware($route): string
     {
         return collect($this->router->gatherRouteMiddleware($route))->map(function ($middleware) {
@@ -84,6 +142,12 @@ class ShowRoutes
         })->implode("\n");
     }
 
+    /**
+     * Parse the column list.
+     *
+     * @param  array  $columns
+     * @return array
+     */
     protected function parseColumns(array $columns): array
     {
         $results = [];
