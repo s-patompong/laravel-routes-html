@@ -4,7 +4,7 @@
     <div
         class="max-w-screen p-8"
         x-data="{
-            routes: @js($routes),
+            routes: {{ json_encode($routes) }},
             filteredRoutes: [],
             filter: {
                 uri: '',

@@ -56,6 +56,7 @@ return [
         'routes-html/*',
         '_ignition/*',
         'sanctum/*',
+        'livewire/*',
     ],
 ];
 ```
