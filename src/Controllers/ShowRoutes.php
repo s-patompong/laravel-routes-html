@@ -37,10 +37,10 @@ class ShowRoutes extends Controller
         $this->router->flushMiddlewareGroups();
 
         // Convert all \n into <br>
-        $routes = array_values(array_map(function(array $route) {
+        $routes = array_values(array_map(function (array $route) {
             $route['middleware'] = nl2br($route['middleware']);
 
-            if(empty(trim($route['middleware']))) {
+            if (empty(trim($route['middleware']))) {
                 $route['middleware'] = '-';
             }
 
