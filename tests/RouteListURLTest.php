@@ -1,7 +1,7 @@
 <?php
 
-use SPatompong\LaravelRoutesHtml\Tests\stubs\Middlewares\HasSecretParam;
 use function Pest\Laravel\get;
+use SPatompong\LaravelRoutesHtml\Tests\stubs\Middlewares\HasSecretParam;
 
 it('gets 404 error if the package is disabled', function () {
     config(['routes-html.enabled' => false]);
