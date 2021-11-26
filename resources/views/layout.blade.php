@@ -14,6 +14,7 @@
 
 @yield('content')
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.5.2/cdn.min.js"
         integrity="sha512-6XIX6b69thrQcii6Jf8fLrITBYvdY6SIkpmxQ75gVxcXCXao8tKAk8iCl/MTDvw3+C49k228+++WKvPsTfvxzA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>

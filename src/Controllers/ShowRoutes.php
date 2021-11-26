@@ -65,22 +65,7 @@ class ShowRoutes extends Controller
             return $this->getRouteInformation($route);
         })->filter()->all();
 
-        $routes = $this->sortRoutes($routes);
-
         return $this->pluckColumns($routes);
-    }
-
-    /**
-     * Sort the routes by a given element.
-     *
-     * @param  array  $routes
-     * @return array
-     */
-    protected function sortRoutes(array $routes)
-    {
-        return Arr::sort($routes, function ($route) {
-            return $route['uri'];
-        });
     }
 
     /**
