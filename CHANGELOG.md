@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-routes-html` will be documented in this file.
 
+## 1.4.0 - 2021-11-29
+
+**Added**
+
+- Add method filter.
+
 ## 1.3.0 - 2021-11-26
 
 **Added**
