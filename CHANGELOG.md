@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-routes-html` will be documented in this file.
 
+## 1.3.0 - 2021-11-26
+
+**Added**
+
+- Allow sorting by the header on the route list table
+
 ## 1.2.0 - 2021-11-25
 
 **Added**
