@@ -1,4 +1,5 @@
 <div
+    x-cloak
     x-data="{
         route: null,
         showModal: false,
@@ -47,4 +48,4 @@
             </div>
         </form>
     </div>
-</div>
+</diva>
