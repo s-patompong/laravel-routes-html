@@ -5,10 +5,16 @@
         showModal: false,
         onSubmittedRouteForm(event) {
             let url = this.route.uri;
+
             for(const parameter of this.route.parameters) {
                 const value = event.currentTarget.elements.namedItem(parameter).value;
                 url = url.replace(`{${parameter}}`, value)
             }
+
+            if(this.route.domain !== null) {
+                url = `${location.protocol}//${this.route.domain}/${url}`;
+            }
+
             window.open(url);
         }
     }"
@@ -32,7 +38,11 @@
             class="flex flex-col gap-4 w-full"
             @submit.prevent="onSubmittedRouteForm($event)"
         >
-            <h1><span class="text-gray-500">Open</span> <span class="font-semibold" x-text="route?.uri"></span></h1>
+            <h1>
+                <span class="text-gray-500">Open</span>
+                <span class="font-semibold" x-text="route?.uri"></span>
+                <span x-show="route?.domain !== null" x-text="`on ${route?.domain}`"></span>
+            </h1>
             <template x-for="parameter in route?.parameters">
                 <div>
                     <label x-text="parameter"></label>

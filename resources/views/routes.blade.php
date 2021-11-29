@@ -7,6 +7,7 @@
             routes: {{ json_encode($routes) }},
             filteredRoutes: [],
             filter: {
+                domain: '',
                 method: '',
                 uri: '',
                 name: ''
@@ -33,7 +34,14 @@
                 }
 
                 if(route.parameters.length === 0) {
-                    window.open(`/${route.uri}`);
+                    let url = `/${_.trimStart(route.uri, '/')}`;
+
+                    if(route.domain !== null) {
+                        url = `${location.protocol}//${route.domain}${url}`;
+                    }
+
+                    window.open(url);
+
                     return;
                 }
 
@@ -43,26 +51,41 @@
         x-effect="
             filteredRoutes = _.orderBy(
                 routes.filter(route => {
-                    return route.uri.toLowerCase().includes(filter.uri.toLowerCase())
-                        && (route.name ? route.name.toLowerCase().includes(filter.name.toLowerCase()) : true)
+                    const routeDomain = route.domain === null ? '' : route.domain;
+                    const routeName = route.name === null ? '' : route.name;
+
+                    let useRoute = route.uri.toLowerCase().includes(filter.uri.toLowerCase())
                         && route.method.toLowerCase().includes(filter.method.toLowerCase());
+
+                    if((routeName !== null) && filter.name) {
+                        useRoute = routeName.toLowerCase().includes(filter.name.toLowerCase());
+                    }
+
+                    if((routeDomain !== null) && filter.domain) {
+                        useRoute = routeDomain.toLowerCase().includes(filter.domain.toLowerCase());
+                    }
+
+                    return useRoute;
                 }),
                 [sort.field],
                 [sort.order]
             );
         "
         xmlns:x-routes-html="http://www.w3.org/1999/html">
-        <h1 class="text-3xl mb-4">
+        <h1 class="text-3xl">
             <span class="uppercase font-extrabold">Route List</span>
         </h1>
 
-        <div class="mb-2 flex flex-col md:flex-row gap-2">
+        <p class="text-gray-500 text-sm mb-4">HINT: Click on the GET route to open it.</p>
+
+        <div class="mb-2 grid grid-cols-2 md:grid-cols-4 gap-2">
+            @include('routes-html::components.input', ['model' => 'filter.domain', 'placeholder' => 'Domain', 'name' => 'domain'])
             @include('routes-html::components.input', ['model' => 'filter.method', 'placeholder' => 'Method', 'name' => 'method'])
             @include('routes-html::components.input', ['model' => 'filter.uri', 'placeholder' => 'URI', 'name' => 'uri'])
             @include('routes-html::components.input', ['model' => 'filter.name', 'placeholder' => 'Name', 'name' => 'name'])
         </div>
 
-        <div class="shadow overflow-x-scroll border-b border-gray-200 sm:rounded-lg">
+        <div class="shadow overflow-x-scroll border-b border-gray-200 rounded-lg">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                 <tr>
