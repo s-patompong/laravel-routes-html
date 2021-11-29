@@ -26,7 +26,7 @@
     class="fixed top-0 left-0 w-screen h-screen bg-gray-900 bg-opacity-50 flex justify-center items-center"
 >
     <div
-        class="max-w-xl bg-white p-4 rounded"
+        class="max-w-xl bg-white p-6 rounded"
         @click.outside="
             showModal = false;
             setTimeout(() => {route = null}, 100);
@@ -41,7 +41,7 @@
             <h1>
                 <span class="text-gray-500">Open</span>
                 <span class="font-semibold" x-text="route?.uri"></span>
-                <span x-show="route?.domain !== null" x-text="`on ${route?.domain}`"></span>
+                <span x-show="route?.domain !== null" x-text="`on ${route?.domain}?`"></span>
             </h1>
             <template x-for="parameter in route?.parameters">
                 <div>
@@ -54,7 +54,7 @@
                 </div>
             </template>
             <div class="text-right">
-                <button type="submit" class="bg-gray-800 text-white py-1 px-3 rounded">Go</button>
+                <button type="submit" class="bg-gray-800 text-white py-1 rounded w-14">Go</button>
             </div>
         </form>
     </div>
