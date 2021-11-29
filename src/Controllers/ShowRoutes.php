@@ -13,8 +13,6 @@ use SPatompong\LaravelRoutesHtml\Middlewares\PackageEnabled;
 
 class ShowRoutes extends Controller
 {
-    protected array $headers = ['Domain', 'Method', 'URI', 'Name', 'Action', 'Middleware'];
-
     protected array $ignoreRoutes;
 
     public function __construct(protected Router $router)
@@ -36,10 +34,7 @@ class ShowRoutes extends Controller
     {
         $this->router->flushMiddlewareGroups();
 
-        // Convert all \n into <br>
         $routes = array_values(array_map(function (array $route) {
-            $route['middleware'] = nl2br($route['middleware']);
-
             if (empty(trim($route['middleware']))) {
                 $route['middleware'] = '-';
             }
@@ -61,46 +56,9 @@ class ShowRoutes extends Controller
      */
     protected function getRoutes(): array
     {
-        $routes = collect($this->router->getRoutes())->map(function ($route) {
+        return collect($this->router->getRoutes())->map(function ($route) {
             return $this->getRouteInformation($route);
         })->filter()->all();
-
-        return $this->pluckColumns($routes);
-    }
-
-    /**
-     * Remove unnecessary columns from the routes.
-     *
-     * @param  array  $routes
-     * @return array
-     */
-    protected function pluckColumns(array $routes): array
-    {
-        return array_map(function ($route) {
-            return Arr::only($route, $this->getColumns());
-        }, $routes);
-    }
-
-    /**
-     * Get the table headers for the visible columns.
-     *
-     * @return array
-     */
-    protected function getHeaders(): array
-    {
-        return Arr::only($this->headers, array_keys($this->getColumns()));
-    }
-
-    /**
-     * Get the column names to show (lowercase table headers).
-     *
-     * @return array
-     */
-    protected function getColumns(): array
-    {
-        $availableColumns = array_map('strtolower', $this->headers);
-
-        return $availableColumns;
     }
 
     /**
@@ -113,6 +71,7 @@ class ShowRoutes extends Controller
     {
         return $this->filterRoute([
             'domain' => $route->domain(),
+            'parameters' => $route->parameterNames(),
             'method' => implode('|', $route->methods()),
             'uri' => $route->uri(),
             'name' => $route->getName(),
@@ -148,7 +107,7 @@ class ShowRoutes extends Controller
     {
         return collect($this->router->gatherRouteMiddleware($route))->map(function ($middleware) {
             return $middleware instanceof Closure ? 'Closure' : $middleware;
-        })->implode("\n");
+        })->implode("<br>");
     }
 
     /**

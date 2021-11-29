@@ -17,36 +17,49 @@
             },
             onClickedHeader(field) {
                 if(field === this.sort.field) {
-                    this.toggleSortOrder();
+                    this.sort.order = this.sort.order === 'asc' ? 'desc' : 'asc';
                 } else {
                     this.sort.field = field;
                     this.sort.order = 'asc';
                 }
             },
-            toggleSortOrder() {
-                this.sort.order = this.sort.order === 'asc' ? 'desc' : 'asc';
+            onClickedRow(index) {
+                this.selectedRoute = null;
+
+                const route = this.filteredRoutes[index];
+
+                if(!route.method.toLowerCase().includes('get')) {
+                    return;
+                }
+
+                if(route.parameters.length === 0) {
+                    window.open(`/${route.uri}`);
+                    return;
+                }
+
+                this.$dispatch('selected-route', route);
             }
         }"
         x-effect="
             filteredRoutes = _.orderBy(
                 routes.filter(route => {
                     return route.uri.toLowerCase().includes(filter.uri.toLowerCase())
-                        && route.name?.toLowerCase().includes(filter.name.toLowerCase())
+                        && (route.name ? route.name.toLowerCase().includes(filter.name.toLowerCase()) : true)
                         && route.method.toLowerCase().includes(filter.method.toLowerCase());
                 }),
                 [sort.field],
                 [sort.order]
             );
         "
-    >
+        xmlns:x-routes-html="http://www.w3.org/1999/html">
         <h1 class="text-3xl mb-4">
             <span class="uppercase font-extrabold">Route List</span>
         </h1>
 
         <div class="mb-2 flex flex-col md:flex-row gap-2">
-            @include('routes-html::components.filter-input', ['model' => 'filter.method', 'placeholder' => 'Method'])
-            @include('routes-html::components.filter-input', ['model' => 'filter.uri', 'placeholder' => 'URI'])
-            @include('routes-html::components.filter-input', ['model' => 'filter.name', 'placeholder' => 'Name'])
+            @include('routes-html::components.input', ['model' => 'filter.method', 'placeholder' => 'Method', 'name' => 'method'])
+            @include('routes-html::components.input', ['model' => 'filter.uri', 'placeholder' => 'URI', 'name' => 'uri'])
+            @include('routes-html::components.input', ['model' => 'filter.name', 'placeholder' => 'Name', 'name' => 'name'])
         </div>
 
         <div class="shadow overflow-x-scroll border-b border-gray-200 sm:rounded-lg">
@@ -62,8 +75,15 @@
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200 text-sm">
-                <template x-for="route in filteredRoutes">
-                    <tr class="hover:bg-gray-100">
+                <template x-for="(route, index) in filteredRoutes">
+                    <tr
+                        class="hover:bg-gray-100"
+                        :class="{
+                            'cursor-pointer': route.method.toLowerCase().includes('get'),
+                            'cursor-not-allowed': !route.method.toLowerCase().includes('get')
+                        }"
+                        @click="onClickedRow(index)"
+                    >
                         <td class="px-6 py-2 whitespace-nowrap" x-text="route.domain || '-'"></td>
                         <td class="px-6 py-2 whitespace-nowrap" x-text="route.method"></td>
                         <td class="px-6 py-2 whitespace-nowrap" x-text="route.uri"></td>
