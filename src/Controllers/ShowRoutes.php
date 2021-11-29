@@ -6,7 +6,6 @@ use Closure;
 use Illuminate\Routing\Controller;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use SPatompong\LaravelRoutesHtml\Middlewares\PackageEnabled;
