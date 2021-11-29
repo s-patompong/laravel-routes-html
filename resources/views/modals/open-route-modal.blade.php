@@ -19,7 +19,7 @@
         }
     }"
     @selected-route.window="
-        route = $event.detail
+        route = $event.detail;
         showModal = true;
     "
     x-show="route !== null"
@@ -58,4 +58,4 @@
             </div>
         </form>
     </div>
-</diva>
+</div>
