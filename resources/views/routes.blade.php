@@ -63,7 +63,7 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200 text-sm">
                 <template x-for="route in filteredRoutes">
-                    <tr>
+                    <tr class="hover:bg-gray-100">
                         <td class="px-6 py-2 whitespace-nowrap" x-text="route.domain || '-'"></td>
                         <td class="px-6 py-2 whitespace-nowrap" x-text="route.method"></td>
                         <td class="px-6 py-2 whitespace-nowrap" x-text="route.uri"></td>
