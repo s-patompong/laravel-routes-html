@@ -7,6 +7,7 @@
             routes: {{ json_encode($routes) }},
             filteredRoutes: [],
             filter: {
+                method: '',
                 uri: '',
                 name: ''
             },
@@ -28,7 +29,11 @@
         }"
         x-effect="
             filteredRoutes = _.orderBy(
-                routes.filter(route => route.uri.includes(filter.uri) && route.name?.includes(filter.name)),
+                routes.filter(route => {
+                    return route.uri.toLowerCase().includes(filter.uri.toLowerCase())
+                        && route.name?.toLowerCase().includes(filter.name.toLowerCase())
+                        && route.method.toLowerCase().includes(filter.method.toLowerCase());
+                }),
                 [sort.field],
                 [sort.order]
             );
@@ -38,19 +43,10 @@
             <span class="uppercase font-extrabold">Route List</span>
         </h1>
 
-        <div class="mb-2 flex gap-2">
-            <input
-                type="text"
-                x-model="filter.uri"
-                placeholder="URI"
-                class="rounded-md px-2 py-1 w-64 shadow focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 focus:outline-none border border-transparent focus:border-blue-600"
-            >
-            <input
-                type="text"
-                x-model="filter.name"
-                placeholder="Name"
-                class="rounded-md px-2 py-1 w-64 shadow focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 focus:outline-none border border-transparent focus:border-blue-600"
-            >
+        <div class="mb-2 flex flex-col md:flex-row gap-2">
+            @include('routes-html::components.filter-input', ['model' => 'filter.method', 'placeholder' => 'Method'])
+            @include('routes-html::components.filter-input', ['model' => 'filter.uri', 'placeholder' => 'URI'])
+            @include('routes-html::components.filter-input', ['model' => 'filter.name', 'placeholder' => 'Name'])
         </div>
 
         <div class="shadow overflow-x-scroll border-b border-gray-200 sm:rounded-lg">
@@ -76,6 +72,9 @@
                         <td class="px-6 py-2 whitespace-nowrap" x-html="route.middleware"></td>
                     </tr>
                 </template>
+                <tr x-show="filteredRoutes.length === 0">
+                    <td colspan="6" class="px-6 py-2 whitespace-nowrap">Route not found.</td>
+                </tr>
                 </tbody>
             </table>
         </div>
