@@ -7,7 +7,7 @@
 
 This package adds a route to your Laravel application. Once you've installed this package, enter `/route-list` path in the browser to see your route list.
 
-https://user-images.githubusercontent.com/3887531/143555171-63bcabfc-11e3-4673-91cd-b06df5fa0021.mov
+https://user-images.githubusercontent.com/3887531/144168468-b5774116-6068-4eed-b57a-8c572554de8e.mov
 
 The page also allows you to filter using the URI and Name.
 
@@ -86,7 +86,7 @@ return [
 
 Open your Laravel application on the browser and go to `/route-list` URL (or the URL that you put inside the `routes-html.uri`).
 
-![Screenshot](https://i.imgur.com/0W86LoF.png)
+![Screenshot](https://i.imgur.com/dhIQEbM.png)
 
 ### Route Middlewares
 
