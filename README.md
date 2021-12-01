@@ -1,4 +1,4 @@
-# View your Laravel routes on the browser.
+# View your Laravel routes on the browser 🏖
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/s-patompong/laravel-routes-html.svg?style=flat-square)](https://packagist.org/packages/s-patompong/laravel-routes-html)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/s-patompong/laravel-routes-html/run-tests?label=tests)](https://github.com/s-patompong/laravel-routes-html/actions?query=workflow%3Arun-tests+branch%3Amain)
@@ -10,6 +10,12 @@ This package adds a route to your Laravel application. Once you've installed thi
 https://user-images.githubusercontent.com/3887531/143555171-63bcabfc-11e3-4673-91cd-b06df5fa0021.mov
 
 The page also allows you to filter using the URI and Name.
+
+## Features
+- See all routes in your Laravel application in a nicely formatted table with responsive layout.
+- Sort routes by domain, method, uri, name, action, and middleware.
+- Quickly filter to see only the routes that you want 🎉.
+- Click on the GET|HEAD route to open it on a new tab (you need to specify the parameters if the route requires them. 😎).
 
 ## Installation
 
