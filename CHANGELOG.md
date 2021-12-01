@@ -2,6 +2,17 @@
 
 All notable changes to `laravel-routes-html` will be documented in this file.
 
+## 1.5.0 - 2021-12-01
+
+**Added**
+
+- Filter by domain.
+- Click on GET|HEAD route to open it on a new tab.
+
+**Changes**
+
+- Just small UI changes, make the filter be more responsive on the small screen device.
+
 ## 1.4.0 - 2021-11-29
 
 **Added**
