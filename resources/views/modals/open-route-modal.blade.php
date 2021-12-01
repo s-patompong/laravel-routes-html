@@ -16,6 +16,14 @@
             }
 
             window.open(url);
+        },
+        closeModal() {
+            if(!this.showModal) {
+                return;
+            }
+
+            this.showModal = false;
+            setTimeout(() => {this.route = null}, 100);
         }
     }"
     @selected-route.window="
@@ -23,15 +31,14 @@
         showModal = true;
     "
     x-show="route !== null"
+    @keyup.escape.window="closeModal()"
     class="fixed top-0 left-0 w-screen h-screen bg-gray-900 bg-opacity-50 flex justify-center items-center"
 >
     <div
         class="max-w-xl bg-white p-6 rounded"
-        @click.outside="
-            showModal = false;
-            setTimeout(() => {route = null}, 100);
-        "
+        @click.outside="closeModal()"
         x-show="showModal"
+        x-trap="showModal"
         x-transition
     >
         <form

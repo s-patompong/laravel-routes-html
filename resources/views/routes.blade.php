@@ -86,7 +86,7 @@
         </div>
 
         <div class="shadow overflow-x-scroll border-b border-gray-200 rounded-lg">
-            <table class="min-w-full divide-y divide-gray-200">
+            <table class="min-w-full divide-y divide-gray-200" x-cloak>
                 <thead class="bg-gray-50">
                 <tr>
                     @include('routes-html::components.table-header', ['field' => 'domain', 'title' => 'Domain'])
