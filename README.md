@@ -9,8 +9,6 @@ This package adds a route to your Laravel application. Once you've installed thi
 
 https://user-images.githubusercontent.com/3887531/144168468-b5774116-6068-4eed-b57a-8c572554de8e.mov
 
-The page also allows you to filter using the URI and Name.
-
 ## Features
 - See all routes in your Laravel application in a nicely formatted table with responsive layout.
 - Sort routes by domain, method, uri, name, action, and middleware.
