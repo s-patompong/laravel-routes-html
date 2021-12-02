@@ -59,7 +59,6 @@ return [
      * The list of route to ignore
      */
     'ignore_routes' => [
-        'routes-html/*',
         '_ignition/*',
         'sanctum/*',
         'livewire/*',
