@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-routes-html` will be documented in this file.
 
+## 1.5.1 - 2021-12-02
+
+**Removed**
+
+- Remove the route_list/* route from the ignore routes list config.
+
 ## 1.5.0 - 2021-12-01
 
 **Added**
